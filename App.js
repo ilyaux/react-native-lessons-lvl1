@@ -1,38 +1,21 @@
-import React, {Component} from 'react'
-import { View, ScrollView } from 'react-native'
-import { Header, ImageCard, Layout } from './src/components/uikit'
+import React, { Component } from "react";
+import { View, Image, StyleSheet } from "react-native";
+import { Login, Feed  } from "./src/components/screens/";
+import { ImageProfile } from './src/components/uikit/'
+import { Router, Scene } from "react-native-router-flux";
 
-const url = 'https://raw.githubusercontent.com/react-native-village/react-native-init/master/stargate/stargate.json'
-
-export default class App extends Component {
-  state = {
-    title: 'JAAM App',
-    data: []
-  }
-
-  componentDidMount = async () => {
-    try {
-      const response = await fetch(url)
-      const data = await response.json()
-      this.setState({ data })
-    } catch (e) {
-      throw e
-    }
-  }
-
+export default class App extends React.Component {
   render() {
-    const { title, data } = this.state
     return (
-      <View>
-        <Header title={title} />
-        <ScrollView>
-          <Layout>
-            { data.map(item => (
-              <ImageCard data={item} key={item.id} />
-            ))}
-          </Layout>
-        </ScrollView>
-      </View>
-    )
+      <Router>
+        <Scene key="root">
+          <Scene key="login" component={Login} hideNavBar={true} />
+
+          <Scene key="feed" component={Feed} hideNavBar={true} initial />
+
+          <Scene key="ImageProfile" component={ImageProfile} hideNavBar={true} />
+        </Scene>
+      </Router>
+    );
   }
 }

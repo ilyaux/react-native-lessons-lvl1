@@ -1,39 +1,24 @@
-import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React from "react";
+import { View } from "react-native";
 
+import { Toolbar } from "react-native-material-ui";
 
 const Header = props => {
-  const { viewStyle, textStyle } = styles
   return (
-    <View style={viewStyle}>
-      <Text style={textStyle}>{props.title}</Text>
+    <View>
+      <Toolbar
+        
+        style={{
+          container: { backgroundColor: "#1f1f1f" }
+        }}
+        centerElement={props.title}
+        searchable={{
+          autoFocus: true,
+          placeholder: "Search"
+        }}
+      />
     </View>
-  )
-}
+  );
+};
 
-const styles = StyleSheet.create ({
-
-   viewStyle: {
-    backgroundColor: '#000',
-    height: 55,
-    justifyContent: 'center',
-    marginTop: 24,
-    paddingLeft: 16,
-    shadowColor: '#000',
-    
-    shadowOffset: { width: 0, height: 5},
-    shadowOpacity: 0.4,
-    elevation: 10,
-    position: 'relative'
-   },
-   textStyle: {
-    color: '#fff',
-    fontSize: 22,
-    
-   }
-
-})
-
-
-
-export { Header }
+export { Header };

@@ -1,48 +1,54 @@
-import React from 'react'
-import { Image, View, Text, StyleSheet } from 'react-native'
-import { w } from '../../../constants'
+import React from "react";
+import PropTypes from "prop-types";
+import { View, Image, StyleSheet } from "react-native";
+import { Avatar, Card, ListItem, COLOR } from "react-native-material-ui";
+import Container from "./Container";
+import { Actions } from "react-native-router-flux";
 
 const ImageCard = ({ data }) => {
-  const { container, sub, h1, cover } = styles
-  const { image, name } = data
+  const { image, name, year } = data;
   return (
-    <View style={container}>
-      <View style={sub}>
-        <Image style={cover} source={{ uri: image}} />
-      </View>
-      <Text style={h1}>{name.toUpperCase()}</Text>
-    </View>
-  )
-}
+      
+    <Container >
+      <Card>
+        <ListItem
+          style={{
+            primaryText: { color: "#fff" },
+            container: { backgroundColor: "#1f1f1f" },
+            secondaryText: { color: "#fff" },
+            rightElement: { color: COLOR.white }
+          }}
+          leftElement={<Avatar />}
+          centerElement={{
+            primaryText: name,
+            secondaryText: year
+          }}
+          rightElement={{
+            actions: ["star"]
+          }}
+        />
+        <View style={styles.Container}>
+          <Image style={styles.Image} source={{ uri: image }} />
+        </View>
+      </Card>
+    </Container>
+  );
+};
 
 const styles = StyleSheet.create({
-  container: {
-    width: w / 2.4,
-    paddingVertical: 10
+  Container: {
+    backgroundColor: "#1f1f1f"
   },
-  sub: {
-    shadowColor: '#000',
-    backgroundColor: 'white',
-    borderRadius: 8,
-    shadowRadius: 8,
-    
-    shadowOffset: { width: 0, height: 5},
-    shadowOpacity: 0.4, 
-    elevation   : 10,
+
+  Image: {
+    height: 250,
+    width: "100%"
   },
-  h1: {
-    paddingTop: 10,
-    
-    fontSize: 14,
-    alignSelf: 'center',
-    textAlign: 'center'
-  },
-  cover: {
-     
-    
-    width: w / 2.4,
-    height: w * 0.63,
-    borderRadius: 8
+  Button: {
+    width: 75,
+    height: 35,
+    backgroundColor: "#1f1f1f"
   }
-})
-export { ImageCard }
+});
+
+export { ImageCard };
